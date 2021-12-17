@@ -54,7 +54,7 @@ def play():
     listDealer.append(randomCard())
     listPlayer.append(randomCard())
     listPlayer.append(randomCard())
-    while listTotal(listPlayer)[0] != 21 and listTotal(listPlayer)[1] != 21 and listTotal(listPlayer)[0] < 21:          #find way to play unlimited times till bust
+    while listTotal(listPlayer)[0] != 21 and listTotal(listPlayer)[1] != 21 and listTotal(listPlayer)[1] < 21:
         print(listPlayer)
         move = input("What is your move? ")
         if move == "Hit":
@@ -66,7 +66,7 @@ def play():
     elif listTotal(listPlayer)[0] > 21 and listTotal(listPlayer)[1] > 21:
         return "Bust. Dealer won." + "".join(listDealer) + " " + "".join(listPlayer)
     else:
-        while listTotal(listDealer)[0] != 21 and listTotal(listDealer)[1] != 21 and listTotal(listDealer)[0] < 21 and  listTotal(listDealer)[0] < listTotal(listPlayer)[0] and listTotal(listDealer)[1] < listTotal(listPlayer)[1]:
+        while listTotal(listDealer)[0] != 21 and listTotal(listDealer)[1] != 21 and (listTotal(listDealer)[0] < 21 or listTotal(listDealer)[1] < 21) and  listTotal(listDealer)[0] < listTotal(listPlayer)[0] and listTotal(listDealer)[1] < listTotal(listPlayer)[1]:
             moveDealer = dealer(listDealer)
             if moveDealer == "Hit":
                 print("Dealer Hit")
@@ -79,7 +79,9 @@ def play():
         #compare scores
     if listTotal(listDealer)[0] == 21 or listTotal(listDealer)[1] == 21:
         return "Dealer got blackjack. You lose." + "".join(listDealer) + " " + "".join(listPlayer)
-    elif listTotal(listDealer)[0] > listTotal(listPlayer)[0] or listTotal(listDealer)[1] > listTotal(listPlayer)[1]:
+    elif listTotal(listDealer)[0] >= 21 and listTotal(listDealer)[1] >= 21:
+        return "Dealer busted. You win!" + "".join(listDealer) + " " + "".join(listPlayer)
+    elif listTotal(listDealer)[0] > listTotal(listPlayer)[0] or (listTotal(listDealer)[1] > listTotal(listPlayer)[1] and listTotal(listDealer)[1] <= 21):
         return "Dealer beat your score. You lose." + "".join(listDealer) + " " + "".join(listPlayer)
     elif listTotal(listDealer)[0] == listTotal(listPlayer)[0] or listTotal(listDealer)[1] == listTotal(listPlayer)[1]:
         return "It's a tie. Nobody wins." + "".join(listDealer) + " " + "".join(listPlayer)
@@ -87,6 +89,4 @@ def play():
         return "You beat the dealer's score! You win!" + "".join(listDealer) + " " + "".join(listPlayer)
     #find way to play unlimited times till bust
 print(play())
-
-
 
