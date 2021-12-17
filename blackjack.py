@@ -14,17 +14,15 @@ def dealer(card):
     a_is_11 = 0
     a_is_1 = 0
     for char in card:  # i think this still works with lists instead of strings
-        try:
-            char = int(char)
-            a_is_11 += char
-            a_is_1 += char
-        except:
-            if char == "A":
-                a_is_11 += 11
-                a_is_1 += 1
-            else:
-                a_is_11 += 10
-                a_is_1 += 10
+        if char == "A":
+            a_is_1 += 1
+            a_is_11 += 11
+        elif char == "K" or char == "J" or char == "Q":
+            a_is_1 += 10
+            a_is_11 += 10
+        else:
+            a_is_1 += int(char)
+            a_is_11 += int(char)
 
     if a_is_11 >= 17 and a_is_11 <= 21:
         return "Stay"
@@ -33,7 +31,7 @@ def dealer(card):
     elif a_is_1 < 17:
         return "Hit"
     else:
-        return "Bust"   # dealer is staying on J 5 when it should be hitting bug fix!!!!
+        return "Bust"
 def listTotal(aList):
     a11 = 0
     a1 = 0
@@ -48,7 +46,7 @@ def listTotal(aList):
             a11 += int(element)
             a1 += int(element)
     return [a11,a1]
-    # write method that return the value of cards with A as 1 and A as 11
+
 def play():
     listPlayer = []
     listDealer = []
@@ -70,10 +68,10 @@ def play():
     else:
         while listTotal(listDealer)[0] != 21 and listTotal(listDealer)[1] != 21 and listTotal(listDealer)[0] < 21 and  listTotal(listDealer)[0] < listTotal(listPlayer)[0] and listTotal(listDealer)[1] < listTotal(listPlayer)[1]:
             moveDealer = dealer(listDealer)
-            if move == "Hit":
+            if moveDealer == "Hit":
                 print("Dealer Hit")
                 listDealer.append(randomCard())
-            elif move == "Stay":
+            elif moveDealer == "Stay":
                 print("Dealer Stay")
                 break
             else:
@@ -89,4 +87,6 @@ def play():
         return "You beat the dealer's score! You win!" + "".join(listDealer) + " " + "".join(listPlayer)
     #find way to play unlimited times till bust
 print(play())
+
+
 
