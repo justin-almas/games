@@ -65,9 +65,9 @@ def play():
         elif move == "Stay":
             break    # may need to work on this line
     if listTotal(listPlayer)[0] == 21 or listTotal(listPlayer)[1] == 21:
-        return "Blackjack! You won!" + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "Blackjack! You won! " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif listTotal(listPlayer)[0] > 21 and listTotal(listPlayer)[1] > 21:
-        return "Bust. Dealer won." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "Bust. Dealer won. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     else:
         while listTotal(listDealer)[0] != 21 and listTotal(listDealer)[1] != 21 and (listTotal(listDealer)[0] < 21 or listTotal(listDealer)[1] < 21) and  listTotal(listDealer)[0] < listTotal(listPlayer)[0] and listTotal(listDealer)[1] < listTotal(listPlayer)[1]:
             moveDealer = dealer(listDealer)
@@ -83,19 +83,19 @@ def play():
     playerAHigh = listTotal(listPlayer)[0]
     playerALow = listTotal(listPlayer)[1]
     if dealerAHigh == 21 or dealerALow == 21:
-        return "You lose. Dealer got blackjack" + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "You lose. Dealer got blackjack. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif dealerAHigh > 21 and dealerALow > 21:
-        return "You win! Dealer busted." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "You win! Dealer busted. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif (dealerAHigh > playerAHigh or dealerAHigh > playerALow) and dealerAHigh <= 21: #still probably buggy
-        return "You lose. Dealer beat your score." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "You lose. Dealer beat your score. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif (dealerALow > playerALow or dealerALow > playerAHigh) and dealerALow <= 21:
-        return "You lose. Dealer beat your score." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "You lose. Dealer beat your score. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif dealerAHigh == playerAHigh and dealerAHigh <= 21:
-        return "It's a tie." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "It's a tie. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     elif dealerALow == playerALow and dealerALow <= 21:
-        return "It's a tie." + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "It's a tie. " + ",".join(listDealer) + " " + ",".join(listPlayer)
     else:
-        return "You won! You beat the dealer's score!" + ",".join(listDealer) + " " + ",".join(listPlayer)
+        return "You won! You beat the dealer's score! " + ",".join(listDealer) + " " + ",".join(listPlayer)
     #find way to play unlimited times till bust
 print(play())
 
