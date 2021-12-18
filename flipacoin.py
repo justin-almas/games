@@ -15,6 +15,10 @@ def fileChanger(winnings,aFile):
 
 def play():
     bet = int(input("What is your bet: $"))
+    currentMoney = int(fileReader("betting.csv"))
+    while bet > currentMoney:
+        print("You don't have that much money to bet. Please enter an amount less than or equal to " + str(currentMoney))
+        bet = int(input("What is your bet: $"))
     guess = input("What is your guess? ")
     currentMoney = int(fileReader("betting.csv"))
     randomNum = random.random()
