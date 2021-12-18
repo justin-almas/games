@@ -23,6 +23,9 @@ def play():
         winningSide = "Heads"
     else:
         winningSide = "Tails"
+    while guess != "Heads" and guess != "Tails":
+        print("Not a valid guess. Must input either 'Heads' or 'Tails'")
+        guess = input("What is your guess? ") 
     if guess == winningSide:
         fileChanger(str(currentMoney + bet),"betting.csv")
         return "You won $" + str(bet) + " with your guess of " + guess
